@@ -3,7 +3,7 @@
 	import { Pane, PaneGroup, PaneResizer } from 'paneforge';
 
 	import { onDestroy, onMount, tick } from 'svelte';
-	import { goto } from '$app/navigation';
+	import { goto } from '$lib/utils/navigation';
 
 	import { chatId, showSidebar, socket, user } from '$lib/stores';
 	import { getChannelById, getChannelMessages, sendMessage } from '$lib/apis/channels';

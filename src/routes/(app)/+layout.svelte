@@ -6,7 +6,7 @@
 	const { saveAs } = fileSaver;
 	import mermaid from 'mermaid';
 
-	import { goto } from '$app/navigation';
+	import { goto } from '$lib/utils/navigation';
 	import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
 

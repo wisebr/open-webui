@@ -3,12 +3,13 @@
 	import { createEventDispatcher, getContext, onMount } from 'svelte';
 
 	import { flyAndScale } from '$lib/utils/transitions';
-	import { goto } from '$app/navigation';
+	import { goto } from '$lib/utils/navigation';
 	import ArchiveBox from '$lib/components/icons/ArchiveBox.svelte';
 	import { showSettings, activeUserIds, USAGE_POOL, mobile, showSidebar } from '$lib/stores';
 	import { fade, slide } from 'svelte/transition';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import { userSignOut } from '$lib/apis/auths';
+	import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -92,7 +93,7 @@
 			{#if role === 'admin'}
 				<a
 					class="flex rounded-md py-2 px-3 w-full hover:bg-gray-50 dark:hover:bg-gray-800 transition"
-					href="/playground"
+					href="{WEBUI_ROUTE_BASE_URL}/playground"
 					on:click={() => {
 						show = false;
 
@@ -122,7 +123,7 @@
 
 				<a
 					class="flex rounded-md py-2 px-3 w-full hover:bg-gray-50 dark:hover:bg-gray-800 transition"
-					href="/admin"
+					href="{WEBUI_ROUTE_BASE_URL}/admin"
 					on:click={() => {
 						show = false;
 
@@ -158,7 +159,7 @@
 				on:click={async () => {
 					await userSignOut();
 					localStorage.removeItem('token');
-					location.href = '/auth';
+					location.href = `${WEBUI_ROUTE_BASE_URL}/auth`;
 					show = false;
 				}}
 			>

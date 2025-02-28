@@ -1,7 +1,7 @@
 <script>
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 	import { WEBUI_NAME, config, user, showSidebar } from '$lib/stores';
-	import { goto } from '$app/navigation';
+	import { goto } from '$lib/utils/navigation';
 	import { onMount, getContext } from 'svelte';
 
 	import dayjs from 'dayjs';
@@ -355,7 +355,7 @@
 								user.profile_image_url.startsWith('https://www.gravatar.com/avatar/') ||
 								user.profile_image_url.startsWith('data:')
 									? user.profile_image_url
-									: `/user.png`}
+									: `${WEBUI_ROUTE_BASE_URL}/user.png`}
 								alt="user"
 							/>
 

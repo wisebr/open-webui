@@ -1,3 +1,4 @@
+import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 import PyodideWorker from '$lib/pyodide/pyodideKernel.worker?worker';
 
 export type CellState = {
@@ -32,7 +33,7 @@ export class PyodideKernel {
 		};
 
 		// Initialize the worker
-		this.worker.postMessage({ type: 'initialize' });
+		this.worker.postMessage({ type: 'initialize', baseUrl: WEBUI_ROUTE_BASE_URL });
 	}
 
 	async execute(id: string, code: string): Promise<CellState> {
@@ -59,7 +60,7 @@ export class PyodideKernel {
 			});
 
 			// Send execute request to the worker
-			this.worker.postMessage({ type: 'execute', id, code });
+			this.worker.postMessage({ type: 'execute', id, code, baseUrl: WEBUI_ROUTE_BASE_URL });
 		});
 	}
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	export let className = 'size-8';
 	export let src = `${WEBUI_BASE_URL}/static/favicon.png`;
@@ -14,7 +14,7 @@
 			  src.startsWith('data:') ||
 			  src.startsWith('/')
 			? src
-			: `/user.png`}
+			: `${WEBUI_ROUTE_BASE_URL}/user.png`}
 	class=" {className} object-cover rounded-full -translate-y-[1px]"
 	alt="profile"
 	draggable="false"

@@ -8,7 +8,7 @@
 	const { saveAs } = fileSaver;
 
 	import { onMount, getContext, tick } from 'svelte';
-	import { goto } from '$app/navigation';
+	import { goto } from '$lib/utils/navigation';
 	const i18n = getContext('i18n');
 
 	import { WEBUI_NAME, config, mobile, models as _models, settings, user } from '$lib/stores';
@@ -34,6 +34,7 @@
 	import Switch from '../common/Switch.svelte';
 	import Spinner from '../common/Spinner.svelte';
 	import { capitalizeFirstLetter } from '$lib/utils';
+	import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	let shiftKey = false;
 
@@ -237,7 +238,7 @@
 			<div>
 				<a
 					class=" px-2 py-2 rounded-xl hover:bg-gray-700/10 dark:hover:bg-gray-100/10 dark:text-gray-300 dark:hover:text-white transition font-medium text-sm flex items-center space-x-1"
-					href="/workspace/models/create"
+					href="{WEBUI_ROUTE_BASE_URL}/workspace/models/create"
 				>
 					<Plus className="size-3.5" />
 				</a>

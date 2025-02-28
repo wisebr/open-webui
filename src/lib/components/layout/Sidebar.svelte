@@ -2,7 +2,7 @@
 	import { toast } from 'svelte-sonner';
 	import { v4 as uuidv4 } from 'uuid';
 
-	import { goto } from '$app/navigation';
+	import { goto } from '$lib/utils/navigation';
 	import {
 		user,
 		chats,
@@ -40,7 +40,7 @@
 		importChat
 	} from '$lib/apis/chats';
 	import { createNewFolder, getFolders, updateFolderParentIdById } from '$lib/apis/folders';
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	import ArchivedChatsModal from './Sidebar/ArchivedChatsModal.svelte';
 	import UserMenu from './Sidebar/UserMenu.svelte';
@@ -503,7 +503,7 @@
 			<a
 				id="sidebar-new-chat-button"
 				class="flex justify-between items-center flex-1 rounded-lg px-2 py-1 h-full text-right hover:bg-gray-100 dark:hover:bg-gray-900 transition no-drag-region"
-				href="/"
+				href="{WEBUI_ROUTE_BASE_URL}/"
 				draggable="false"
 				on:click={async () => {
 					selectedChatId = null;
@@ -541,7 +541,7 @@
 			<div class="px-1.5 flex justify-center text-gray-800 dark:text-gray-200">
 				<a
 					class="grow flex items-center space-x-3 rounded-lg px-2 py-[7px] hover:bg-gray-100 dark:hover:bg-gray-900 transition"
-					href="/home"
+					href="{WEBUI_ROUTE_BASE_URL}/home"
 					on:click={() => {
 						selectedChatId = null;
 						chatId.set('');
@@ -567,7 +567,7 @@
 			<div class="px-1.5 flex justify-center text-gray-800 dark:text-gray-200">
 				<a
 					class="grow flex items-center space-x-3 rounded-lg px-2 py-[7px] hover:bg-gray-100 dark:hover:bg-gray-900 transition"
-					href="/workspace"
+					href="{WEBUI_ROUTE_BASE_URL}/workspace"
 					on:click={() => {
 						selectedChatId = null;
 						chatId.set('');

@@ -28,7 +28,8 @@
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import Switch from '$lib/components/common/Switch.svelte';
 	import ChatBubbleOval from '$lib/components/icons/ChatBubbleOval.svelte';
-	import { goto } from '$app/navigation';
+	import { goto } from '$lib/utils/navigation';
+	import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 	const dispatch = createEventDispatcher();
@@ -338,7 +339,7 @@
 												placement="top-start"
 											>
 												<img
-													src={item.model?.info?.meta?.profile_image_url ?? '/static/favicon.png'}
+													src={item.model?.info?.meta?.profile_image_url ?? `${WEBUI_ROUTE_BASE_URL}/static/favicon.png`}
 													alt="Model"
 													class="rounded-full size-5 flex items-center mr-2"
 												/>

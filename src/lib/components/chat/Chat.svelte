@@ -7,12 +7,12 @@
 	import { getContext, onDestroy, onMount, tick } from 'svelte';
 	const i18n: Writable<i18nType> = getContext('i18n');
 
-	import { goto } from '$app/navigation';
+	import { goto } from '$lib/utils/navigation';
 	import { page } from '$app/stores';
 
 	import { get, type Unsubscriber, type Writable } from 'svelte/store';
 	import type { i18n as i18nType } from 'i18next';
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	import {
 		chatId,
@@ -693,8 +693,8 @@
 		await showOverview.set(false);
 		await showArtifacts.set(false);
 
-		if ($page.url.pathname.includes('/c/')) {
-			window.history.replaceState(history.state, '', `/`);
+		if ($page.url.pathname.includes(`${WEBUI_ROUTE_BASE_URL}/c/`)) {
+			window.history.replaceState(history.state, '', `${WEBUI_ROUTE_BASE_URL}/`);
 		}
 
 		autoScroll = true;
@@ -1824,7 +1824,7 @@
 			await chats.set(await getChatList(localStorage.token, $currentChatPage));
 			currentChatPage.set(1);
 
-			window.history.replaceState(history.state, '', `/c/${_chatId}`);
+			window.history.replaceState(history.state, '', `${WEBUI_ROUTE_BASE_URL}/c/${_chatId}`);
 		} else {
 			_chatId = 'local';
 			await chatId.set('local');

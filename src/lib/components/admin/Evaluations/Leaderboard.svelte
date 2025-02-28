@@ -1,8 +1,9 @@
 <script lang="ts">
 	import * as ort from 'onnxruntime-web';
 	import { env, AutoModel, AutoTokenizer } from '@huggingface/transformers';
+	import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
-	env.backends.onnx.wasm.wasmPaths = '/wasm/';
+	env.backends.onnx.wasm.wasmPaths = `${WEBUI_ROUTE_BASE_URL}/wasm/`;
 
 	import { onMount, getContext } from 'svelte';
 	import { models } from '$lib/stores';
@@ -353,7 +354,7 @@
 							<div class="flex items-center gap-2">
 								<div class="shrink-0">
 									<img
-										src={model?.info?.meta?.profile_image_url ?? '/favicon.png'}
+										src={model?.info?.meta?.profile_image_url ?? `${WEBUI_ROUTE_BASE_URL}/favicon.png`}
 										alt={model.name}
 										class="size-5 rounded-full object-cover shrink-0"
 									/>

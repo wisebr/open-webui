@@ -14,7 +14,7 @@
 	import VoiceRecording from '../chat/MessageInput/VoiceRecording.svelte';
 	import InputMenu from './MessageInput/InputMenu.svelte';
 	import { uploadFile } from '$lib/apis/files';
-	import { WEBUI_API_BASE_URL } from '$lib/constants';
+	import { WEBUI_API_BASE_URL, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 	import FileItem from '../common/FileItem.svelte';
 	import Image from '../common/Image.svelte';
 	import { transcribeAudio } from '$lib/apis/audio';
@@ -406,7 +406,7 @@
 										<div class=" relative group">
 											<div class="relative">
 												<Image
-													src={file.url}
+													src={`${WEBUI_ROUTE_BASE_URL}${file.url}`}
 													alt="input"
 													imageClassName=" h-16 w-16 rounded-xl object-cover"
 												/>

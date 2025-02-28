@@ -23,6 +23,7 @@
 	import { config } from '$lib/stores';
 	import { executeCode } from '$lib/apis/utils';
 	import { toast } from 'svelte-sonner';
+	import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 	const dispatch = createEventDispatcher();
@@ -226,7 +227,8 @@
 		pyodideWorker.postMessage({
 			id: id,
 			code: code,
-			packages: packages
+			packages: packages,
+			baseUrl: WEBUI_ROUTE_BASE_URL,
 		});
 
 		setTimeout(() => {
@@ -514,7 +516,7 @@
 									<div class="flex flex-col gap-2">
 										{#each files as file}
 											{#if file.type.startsWith('image')}
-												<img src={file.data} alt="Output" />
+												<img src={`${WEBUI_ROUTE_BASE_URL}${file.data}`} alt="Output" />
 											{/if}
 										{/each}
 									</div>

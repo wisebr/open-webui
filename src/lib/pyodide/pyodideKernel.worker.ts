@@ -18,10 +18,10 @@ type CellState = {
 	stderr: string;
 };
 
-const initializePyodide = async () => {
+const initializePyodide = async (baseUrl = '') => {
 	// Ensure Pyodide is loaded once and cached in the worker's global scope
 	if (!self.pyodide) {
-		self.indexURL = '/pyodide/';
+		self.indexURL = `${baseUrl}/pyodide/`;
 		self.stdout = '';
 		self.stderr = '';
 		self.cells = {};
@@ -32,9 +32,9 @@ const initializePyodide = async () => {
 	}
 };
 
-const executeCode = async (id: string, code: string) => {
+const executeCode = async (id: string, code: string, baseUrl?: string) => {
 	if (!self.pyodide) {
-		await initializePyodide();
+		await initializePyodide(baseUrl);
 	}
 
 	// Update the cell state to "running"
@@ -90,17 +90,17 @@ const executeCode = async (id: string, code: string) => {
 
 // Handle messages from the main thread
 self.onmessage = async (event) => {
-	const { type, id, code, ...args } = event.data;
+	const { type, id, code, baseUrl, ...args } = event.data;
 
 	switch (type) {
 		case 'initialize':
-			await initializePyodide();
+			await initializePyodide(baseUrl);
 			self.postMessage({ type: 'initialized' });
 			break;
 
 		case 'execute':
 			if (id && code) {
-				await executeCode(id, code);
+				await executeCode(id, code, baseUrl);
 			}
 			break;
 

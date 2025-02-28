@@ -12,9 +12,10 @@
 		tools
 	} from '$lib/stores';
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
+	import { goto } from '$lib/utils/navigation';
 
 	import MenuLines from '$lib/components/icons/MenuLines.svelte';
+	import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -83,7 +84,7 @@
 								)
 									? ''
 									: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
-								href="/workspace/models">{$i18n.t('Models')}</a
+								href="{WEBUI_ROUTE_BASE_URL}/workspace/models">{$i18n.t('Models')}</a
 							>
 						{/if}
 
@@ -94,7 +95,7 @@
 								)
 									? ''
 									: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
-								href="/workspace/knowledge"
+								href="{WEBUI_ROUTE_BASE_URL}/workspace/knowledge"
 							>
 								{$i18n.t('Knowledge')}
 							</a>
@@ -107,7 +108,7 @@
 								)
 									? ''
 									: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
-								href="/workspace/prompts">{$i18n.t('Prompts')}</a
+								href="{WEBUI_ROUTE_BASE_URL}/workspace/prompts">{$i18n.t('Prompts')}</a
 							>
 						{/if}
 
@@ -116,7 +117,7 @@
 								class="min-w-fit rounded-full p-1.5 {$page.url.pathname.includes('/workspace/tools')
 									? ''
 									: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
-								href="/workspace/tools"
+								href="{WEBUI_ROUTE_BASE_URL}/workspace/tools"
 							>
 								{$i18n.t('Tools')}
 							</a>

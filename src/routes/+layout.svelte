@@ -27,7 +27,7 @@
 		isApp,
 		appInfo
 	} from '$lib/stores';
-	import { goto } from '$app/navigation';
+	import { goto } from '$lib/utils/navigation';
 	import { page } from '$app/stores';
 	import { Toaster, toast } from 'svelte-sonner';
 
@@ -39,7 +39,7 @@
 
 	import 'tippy.js/dist/tippy.css';
 
-	import { WEBUI_BASE_URL, WEBUI_HOSTNAME } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_HOSTNAME, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 	import i18n, { initI18n, getLanguages } from '$lib/i18n';
 	import { bestMatchingLanguage } from '$lib/utils';
 	import { getAllTags, getChatList } from '$lib/apis/chats';
@@ -56,12 +56,12 @@
 	const BREAKPOINT = 768;
 
 	const setupSocket = async (enableWebsocket) => {
-		const _socket = io(`${WEBUI_BASE_URL}` || undefined, {
+		const _socket = io('', {
 			reconnection: true,
 			reconnectionDelay: 1000,
 			reconnectionDelayMax: 5000,
 			randomizationFactor: 0.5,
-			path: '/ws/socket.io',
+			path: `${WEBUI_BASE_URL}/ws/socket.io`,
 			transports: enableWebsocket ? ['websocket'] : ['polling', 'websocket'],
 			auth: { token: localStorage.token }
 		});
@@ -128,7 +128,8 @@
 		pyodideWorker.postMessage({
 			id: id,
 			code: code,
-			packages: packages
+			packages: packages,
+			baseUrl: WEBUI_ROUTE_BASE_URL,
 		});
 
 		setTimeout(() => {
@@ -507,7 +508,7 @@
 				} else {
 					// Don't redirect if we're already on the auth page
 					// Needed because we pass in tokens from OAuth logins via URL fragments
-					if ($page.url.pathname !== '/auth') {
+					if ($page.url.pathname !== `${WEBUI_ROUTE_BASE_URL}/auth`) {
 						await goto('/auth');
 					}
 				}
@@ -561,8 +562,8 @@
 
 	<!-- rosepine themes have been disabled as it's not up to date with our latest version. -->
 	<!-- feel free to make a PR to fix if anyone wants to see it return -->
-	<!-- <link rel="stylesheet" type="text/css" href="/themes/rosepine.css" />
-	<link rel="stylesheet" type="text/css" href="/themes/rosepine-dawn.css" /> -->
+	<!-- <link rel="stylesheet" type="text/css" href="{WEBUI_ROUTE_BASE_URL}/themes/rosepine.css" />
+	<link rel="stylesheet" type="text/css" href="{WEBUI_ROUTE_BASE_URL}/themes/rosepine-dawn.css" /> -->
 </svelte:head>
 
 {#if loaded}

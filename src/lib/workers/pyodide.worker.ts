@@ -13,13 +13,13 @@ declare global {
 	}
 }
 
-async function loadPyodideAndPackages(packages: string[] = []) {
+async function loadPyodideAndPackages(packages: string[] = [], baseUrl = '') {
 	self.stdout = null;
 	self.stderr = null;
 	self.result = null;
 
 	self.pyodide = await loadPyodide({
-		indexURL: '/pyodide/',
+		indexURL: `${baseUrl}/pyodide/`,
 		stdout: (text) => {
 			console.log('Python output:', text);
 
@@ -64,7 +64,7 @@ async function loadPyodideAndPackages(packages: string[] = []) {
 }
 
 self.onmessage = async (event) => {
-	const { id, code, ...context } = event.data;
+	const { id, code, baseUrl, ...context } = event.data;
 
 	console.log(event.data);
 
@@ -74,7 +74,7 @@ self.onmessage = async (event) => {
 	}
 
 	// make sure loading is done
-	await loadPyodideAndPackages(self.packages);
+	await loadPyodideAndPackages(self.packages, baseUrl);
 
 	try {
 		// check if matplotlib is imported in the code

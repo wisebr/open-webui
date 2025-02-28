@@ -26,7 +26,7 @@
 	import { generateAutoCompletion } from '$lib/apis';
 	import { deleteFileById } from '$lib/apis/files';
 
-	import { WEBUI_BASE_URL, WEBUI_API_BASE_URL, PASTED_TEXT_CHARACTER_LIMIT } from '$lib/constants';
+	import { WEBUI_API_BASE_URL, PASTED_TEXT_CHARACTER_LIMIT, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	import InputMenu from './MessageInput/InputMenu.svelte';
 	import VoiceRecording from './MessageInput/VoiceRecording.svelte';
@@ -488,8 +488,8 @@
 											src={$models.find((model) => model.id === atSelectedModel.id)?.info?.meta
 												?.profile_image_url ??
 												($i18n.language === 'dg-DG'
-													? `/doge.png`
-													: `${WEBUI_BASE_URL}/static/favicon.png`)}
+													? `${WEBUI_ROUTE_BASE_URL}/doge.png`
+													: `${WEBUI_ROUTE_BASE_URL}/static/favicon.png`)}
 										/>
 										<div class="translate-y-[0.5px]">
 											Talking to <span class=" font-medium">{atSelectedModel.name}</span>
@@ -599,7 +599,7 @@
 												<div class=" relative group">
 													<div class="relative flex items-center">
 														<Image
-															src={file.url}
+															src={`${WEBUI_ROUTE_BASE_URL}${file.url}`}
 															alt="input"
 															imageClassName=" size-14 rounded-xl object-cover"
 														/>

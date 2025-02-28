@@ -16,6 +16,7 @@
 	import DeleteConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
 
 	import localizedFormat from 'dayjs/plugin/localizedFormat';
+	import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 	dayjs.extend(localizedFormat);
@@ -103,8 +104,8 @@
 			<ProfileImage
 				src={message.user
 					? ($models.find((m) => m.id === message.user)?.info?.meta?.profile_image_url ??
-						'/user.png')
-					: (user?.profile_image_url ?? '/user.png')}
+						`${WEBUI_ROUTE_BASE_URL}/user.png`)
+					: (user?.profile_image_url ?? `${WEBUI_ROUTE_BASE_URL}/user.png`)}
 				className={'size-8'}
 			/>
 		</div>

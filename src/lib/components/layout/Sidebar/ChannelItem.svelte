@@ -9,6 +9,7 @@
 
 	import Cog6 from '$lib/components/icons/Cog6.svelte';
 	import ChannelModal from './ChannelModal.svelte';
+	import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	export let onUpdate: Function = () => {};
 
@@ -50,7 +51,7 @@
 >
 	<a
 		class=" w-full flex justify-between"
-		href="/channels/{channel.id}"
+		href="{WEBUI_ROUTE_BASE_URL}/channels/{channel.id}"
 		on:click={() => {
 			if ($mobile) {
 				showSidebar.set(false);

@@ -16,6 +16,7 @@
 	import AccessControl from '../common/AccessControl.svelte';
 	import { stringify } from 'postcss';
 	import { toast } from 'svelte-sonner';
+	import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -384,7 +385,7 @@
 								/>
 							{:else}
 								<img
-									src="/static/favicon.png"
+									src="{WEBUI_ROUTE_BASE_URL}/static/favicon.png"
 									alt="model profile"
 									class=" rounded-xl size-72 md:size-60 object-cover shrink-0"
 								/>

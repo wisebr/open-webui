@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 	import ImagePreview from './ImagePreview.svelte';
 
 	export let src = '';
@@ -21,7 +21,7 @@
 	}}
 	type="button"
 >
-	<img src={_src} {alt} class={imageClassName} draggable="false" data-cy="image" />
+	<img src={`${WEBUI_ROUTE_BASE_URL}${_src}`} {alt} class={imageClassName} draggable="false" data-cy="image" />
 </button>
 
-<ImagePreview bind:show={showImagePreview} src={_src} {alt} />
+<ImagePreview bind:show={showImagePreview} src={`${WEBUI_ROUTE_BASE_URL}${_src}`} {alt} />

@@ -4,7 +4,7 @@
 
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import Plus from '$lib/components/icons/Plus.svelte';
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 	import Checkbox from '$lib/components/common/Checkbox.svelte';
 	import Badge from '$lib/components/common/Badge.svelte';
 
@@ -98,7 +98,7 @@
 										user.profile_image_url.startsWith('https://www.gravatar.com/avatar/') ||
 										user.profile_image_url.startsWith('data:')
 											? user.profile_image_url
-											: `/user.png`}
+											: `${WEBUI_ROUTE_BASE_URL}/user.png`}
 										alt="user"
 									/>
 

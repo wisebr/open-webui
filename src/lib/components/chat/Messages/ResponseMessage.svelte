@@ -26,7 +26,7 @@
 		createMessagesList,
 		formatDate
 	} from '$lib/utils';
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	import Name from './Name.svelte';
 	import ProfileImage from './ProfileImage.svelte';
@@ -538,7 +538,7 @@
 		<div class={`shrink-0 ${($settings?.chatDirection ?? 'LTR') === 'LTR' ? 'mr-3' : 'ml-3'}`}>
 			<ProfileImage
 				src={model?.info?.meta?.profile_image_url ??
-					($i18n.language === 'dg-DG' ? `/doge.png` : `${WEBUI_BASE_URL}/static/favicon.png`)}
+					($i18n.language === 'dg-DG' ? `${WEBUI_ROUTE_BASE_URL}/doge.png` : `${WEBUI_ROUTE_BASE_URL}/static/favicon.png`)}
 				className={'size-8'}
 			/>
 		</div>
@@ -1296,7 +1296,7 @@
 													{#if action.icon_url}
 														<div class="size-4">
 															<img
-																src={action.icon_url}
+																src={`${WEBUI_ROUTE_BASE_URL}${action.icon_url}`}
 																class="w-4 h-4 {action.icon_url.includes('svg')
 																	? 'dark:invert-[80%]'
 																	: ''}"

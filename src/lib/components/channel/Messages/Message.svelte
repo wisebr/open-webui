@@ -15,7 +15,7 @@
 
 	import { settings, user, shortCodesToEmojis } from '$lib/stores';
 
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	import Markdown from '$lib/components/chat/Messages/Markdown.svelte';
 	import ProfileImage from '$lib/components/chat/Messages/ProfileImage.svelte';
@@ -275,7 +275,7 @@
 										>
 											{#if $shortCodesToEmojis[reaction.name]}
 												<img
-													src="/assets/emojis/{$shortCodesToEmojis[
+													src="{WEBUI_ROUTE_BASE_URL}/assets/emojis/{$shortCodesToEmojis[
 														reaction.name
 													].toLowerCase()}.svg"
 													alt={reaction.name}

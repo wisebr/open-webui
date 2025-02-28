@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { formatFileSize } from '$lib/utils';
+	import { WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 
 	import FileItemModal from './FileItemModal.svelte';
 	import GarbageBin from '../icons/GarbageBin.svelte';
@@ -45,9 +46,9 @@
 		} else {
 			if (url) {
 				if (type === 'file') {
-					window.open(`${url}/content`, '_blank').focus();
+					window.open(`${WEBUI_ROUTE_BASE_URL}${url}/content`, '_blank').focus();
 				} else {
-					window.open(`${url}`, '_blank').focus();
+					window.open(`${WEBUI_ROUTE_BASE_URL}${url}`, '_blank').focus();
 				}
 			}
 		}

@@ -12,7 +12,7 @@ dayjs.extend(isToday);
 dayjs.extend(isYesterday);
 dayjs.extend(localizedFormat);
 
-import { WEBUI_BASE_URL } from '$lib/constants';
+import { WEBUI_BASE_URL, WEBUI_ROUTE_BASE_URL } from '$lib/constants';
 import { TTS_RESPONSE_SPLIT } from '$lib/types';
 
 //////////////////////////
@@ -264,7 +264,7 @@ export const generateInitialsImage = (name) => {
 		console.log(
 			'generateInitialsImage: failed pixel test, fingerprint evasion is likely. Using default image.'
 		);
-		return '/user.png';
+		return `${WEBUI_ROUTE_BASE_URL}/user.png`;
 	}
 
 	ctx.fillStyle = '#F39C12';
